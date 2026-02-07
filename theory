@@ -1,0 +1,52 @@
+Jeneratörün sol tarafında Pm ve Vf girişleri vardır.Sağ tarafında ise m ve A,B,C çıkışlaro vardır
+
+Synchronous Generator
+
+Pm is the mechanical power that drives the generator shaft. In real life, this is provided by a turbine.
+
+Vf is the DC voltage applied to the rotor field windings. This voltage, together with the shaft rotation, produces a rotating magnetic field in the rotor.
+
+A, B, C are the three-phase stator terminals. The grid or load is connected from these terminals.
+
+m is the measurement output. Machine speed, currents, angle, torque, etc. are sent to the Bus Selector through this output.
+
+Bus Selector
+
+The Bus Selector is used to extract and analyze specific signals from the complex data bus output of the generator.
+
+Turbine
+
+wref is the reference speed value. It is set to 1 pu, meaning the machine is expected to rotate at nominal speed.
+
+Pref is the reference active power. It is set to 0.75 pu, meaning the generator will produce 75% of its rated power.
+
+we is the electrical speed of the generator. The speed signal from the Bus Selector is connected here.
+
+Peo is the instantaneous electrical power of the generator. It is connected from the Bus Selector.
+
+dw is the speed deviation. It allows the controller to respond to small rotor speed variations.
+
+Speed control: If the generator slows down, the controller detects it and increases the mechanical power.
+Power control: If the electrical load increases and the generator is stressed, the controller increases mechanical power to compensate.
+Fast response: Small and sudden speed changes (dw) are detected and mechanical power is adjusted accordingly.
+
+Excitation System
+
+Vref is the voltage reference, set to 1 pu.
+
+Vd and Vq are the d- and q-axis components of the generator terminal voltage. The goal is to keep the terminal voltage at nominal value.
+
+These values are used to calculate the terminal voltage, which is compared with the reference voltage Vref.
+
+Vstab is a stabilizing signal to suppress oscillations. Since it is grounded, it is currently inactive.
+
+Vf is the output of this block. It controls rotor magnetization and the output voltage.
+
+The generator output is a 13.8 kV three-phase AC voltage, converting mechanical energy into electrical energy.
+To transmit power over long distances, a step-up transformer increases the voltage level, reducing transmission losses.
+
+The loads at the generator output represent the plant’s own consumption and a settlement load.
+
+The three-phase fault block intentionally creates a short circuit in the system. Between 0.1–0.2 seconds, the line is short-circuited to ground to test system stability.
+
+The three-phase source represents the grid to which the line is synchronized. Since this grid is very strong, its voltage and frequency are assumed constant.
